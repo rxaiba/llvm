@@ -1315,7 +1315,6 @@ Parser::ParseCastExpression(CastParseKind ParseKind, bool isAddressOfOperand,
     }
     [[fallthrough]];
 
-  case tok::annot_decltype:
   case tok::annot_pack_indexing_type:
   case tok::kw_char:
   case tok::kw_wchar_t:
@@ -1365,11 +1364,6 @@ Parser::ParseCastExpression(CastParseKind ParseKind, bool isAddressOfOperand,
       // postfix-expression: typename-specifier '(' expression-list[opt] ')'
       //                     typename-specifier braced-init-list
       if (TryAnnotateTypeOrScopeToken())
-        return ExprError();
-
-      if (!Tok.isSimpleTypeSpecifier(getLangOpts()))
-        // We are trying to parse a simple-type-specifier but might not get such
-        // a token after error recovery.
         return ExprError();
     }
 
