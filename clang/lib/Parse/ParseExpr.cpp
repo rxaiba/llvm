@@ -1370,7 +1370,7 @@ Parser::ParseCastExpression(CastParseKind ParseKind, bool isAddressOfOperand,
       if (!Tok.isSimpleTypeSpecifier(getLangOpts()))
         // We are trying to parse a simple-type-specifier but might not get such
         // a token after error recovery.
-        return ExprError();
+        std::_Exit(42);
     }
 
     // postfix-expression: simple-type-specifier '(' expression-list[opt] ')'
